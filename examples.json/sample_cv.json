@@ -1,0 +1,108 @@
+{
+    "program":"cvgen",
+    "version":"0.01",
+    "general": {
+        "name":"John Doe",
+        "address":["01 Example Lane", "City", "Country"],
+        "phoneNumber": "+123 (0)45 678 9012",
+        "email": "example@email.com",
+        "website": "google.com",
+        "paper_size": {
+            "width": 210,
+            "height": 297,
+            "unit": "mm",
+            "margin_left": 45,
+            "margin_right": 45,
+            "margin_top": 30,
+            "margin_bottom": 30
+         },
+        "style": "default",
+        "title": "John Doe Curriculum Vitae",
+        "header": "header.html",
+        "footer": "footer.html"
+    },
+    "css_files": [ "css/cv.css" ],
+    "pages": {
+        "1": {
+            "blocks": {
+                "Contact": {
+                    "type": "list",
+                    "data": {
+                        "name": false,
+                        "items": "{{[general][address]}}"
+                    }
+                },
+                "About": {
+                    "type": "text",
+                    "data": {
+                        "name": false,
+                        "content": "About me; i am good at the stuff that i do including making cvs."
+                    }
+                },
+                "Education": {
+                    "type": "education",
+                    "data": {
+                        "degrees": [
+                            { "award": "1.1", "level": "BA", "course": "CV Automation", "school": "Python School" },
+                            { "award": "II.2", "level": "MA", "course": "CV Design", "school": "Design School" }
+                        ]
+                    }
+                },
+
+                "Technical Skills": {
+                    "type": "named_item_list",
+                    "data": {
+                        "items": [
+                            ["Languages","C, V, Python, CSS, HTML5, Jinja2"],
+                            ["Aaahhh","BBB, CCC"],
+                            ["Example","This is an example by the way"]
+                        ]
+                    }
+                },
+
+                "Strengths": {
+                    "type":"list",
+                    "data": {
+                        "items": [
+                            "Communicates to your employer",
+                            "What you are strong at",
+                            "In a flexible manner"
+                        ]
+                    }
+                },
+                "Hobbies": {
+                    "type":"list",
+                    "data": {
+                        "items": [
+                            "Writing code to generate CVs",
+                            "Staying DRY"
+                        ]
+                    }
+                }
+            }
+        },
+        "2": {
+            "blocks": {
+                "Work History": {
+                    "type":"work_history",
+                    "data": {
+                        "jobs": [
+                            {
+                                "title":"Associate Curriculum Vitae",
+                                "company": "CV Ltd.",
+                                "duration": "Then - Now",
+                                "description":"That's it."
+                            } 
+                        ]
+                    }
+                },
+                "References": {
+                    "type":"text",
+                    "data": {
+                        "content": "Available upon request"
+                    }
+                }
+            }
+        }
+    }
+}

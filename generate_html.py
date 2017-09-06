@@ -1,5 +1,6 @@
 #!/usr/bin/python3.6
 
+import os
 import sys
 import json
 from jinja2 import Environment, PackageLoader, select_autoescape
@@ -108,6 +109,7 @@ def render():
     
     output_html = BeautifulSoup(output_html, 'html.parser').prettify()
 
+    os.mkdir('output')
     with open('output/{}.html'.format(config['general']['title']), 'w') as fh:
        fh.write(output_html) 
 

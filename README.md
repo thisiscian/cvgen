@@ -3,38 +3,39 @@ This is a set of scripts that generates a Curriculum Vitae, based on data stored
 
 ## Requirements
 * Python 3.6
-* A \*nix distribution that supports the [wkhtmltopdf](https://wkhtmltopdf.org/) binary I have included.
+* A \*nix distribution that supports the [wkhtmltopdf](https://wkhtmltopdf.org/) binary I have included (probably linux).
 
 ## Usage
 
     ./cvgen.py examples.json/sample_cv.json
-    # writes to output/John\\ Doe\\ Curriculum\\ Vitae.html
-    # and output/John\\ Doe\\ Curriculum\\ Vitae.pdf
-    # as dictated by the the general[title] section of the json file.
+
+writes to `output/John\\ Doe\\ Curriculum\\ Vitae.html`
+and `output/John\\ Doe\\ Curriculum\\ Vitae.pdf`
+as dictated by the the general[title] section of the json file.
 
 ## Description
 
 ## JSON Keys
 
-* *program* required to be "cvgen"
-* *css_files* a list of css template files to be rendered and added to the cv
-* *general* See the [general](#general) section
-* *pages* See the [pages](#pages) section
+* **[program]** required to be "cvgen"
+* **[css_files]** a list of css template files to be rendered and added to the cv
+* **[general]** See the [general](#general) section
+* **[pages]** See the [pages](#pages) section
 
-### general
-* *header* Defines the template to be used for the page header
-* *footer* Defines the template to be used for the page footer
-* *css_files* Defines (in list form) the css files that should be rendered into the cv.
-* *paper_size* See the [paper_size](#paper_size) section
+### [general]
+* **[general][header]** Defines the template to be used for the page header
+* **[general][footer]** Defines the template to be used for the page footer
+* **[general][css_files]** Defines (in list form) the css files that should be rendered into the cv.
+* **[general][paper_size]** See the [paper_size](#paper_size) section
 
-#### paper_size
-* *unit* Defines the units to be used in the css file
-* *width* Defines the width of the page (currently needs to be 210, otherwise wkhtmltopdf will have a mismatch)
-* *height* Defines the hight of the page (needs to be 297)
-* *margin_left* Defines the left page margin
-* *margin_right* Defines the right page margin
-* *margin_top* Defines the top margin
-* *margin_bottom* Defines the bottom margin
+#### [general][paper_size]
+* **[general][paper_size][unit]** Defines the units to be used in the css file
+* **[general][paper_size][width]** Defines the width of the page (currently needs to be 210, otherwise wkhtmltopdf will have a mismatch)
+* **[general][paper_size][height]** Defines the hight of the page (needs to be 297)
+* **[general][paper_size][margin_left]** Defines the left page margin
+* **[general][paper_size][margin_right]** Defines the right page margin
+* **[general][paper_size][margin_top]** Defines the top margin
+* **[general][paper_size][margin_bottom]** Defines the bottom margin
 
 {
     "program":"cvgen",

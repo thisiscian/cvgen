@@ -19,14 +19,14 @@ as dictated by the the general[title] section of the json file.
 
 * **["program"]** required to be "cvgen"
 * **["css_files"]** a list of css template files to be rendered and added to the cv
-* **["general"]** See the [general](#general) section
-* **["pages"]** See the [pages](#pages) section
+* **["general"]** See the [["general"]](#general) section
+* **["pages"]** See the [["pages"]](#pages) section
 
 ### ["general"]
 * **["general"]["header"]** Defines the template to be used for the page header
 * **["general"]["footer"]** Defines the template to be used for the page footer
 * **["general"]["css_files"]** Defines (in list form) the css files that should be rendered into the cv.
-* **["general"]["paper_size"]** See the [paper_size](#paper_size) section
+* **["general"]["paper_size"]** See the [["general"]["paper_size"]](#["general"]["paper_size"]) section
 
 #### ["general"]["paper_size"]
 * **["general"]["paper_size"]["unit"]** Defines the units to be used in the css file
@@ -35,6 +35,9 @@ as dictated by the the general[title] section of the json file.
 * **["general"]["paper_size"]["margin_left"]** Defines the left page margin
 * **["general"]["paper_size"]["margin_right"]** Defines the right page margin
 * **["general"]["paper_size"]["margin_top"]** Defines the top margin
+
+### ["pages"]
+* **["pages"]["a page name"]** See the [["pages"]["page_name"]](#
 
 {
     "program":"cvgen",

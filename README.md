@@ -15,18 +15,46 @@ as dictated by the the general[title] section of the json file.
 
 ## Description
 
-## JSON Keys
+## Pre-defined JSON Keys
 
 * **["program"]** required to be "cvgen"
 * **["css_files"]** a list of css template files to be rendered and added to the cv
-* **["general"]** See the [["general"]](#general) section
-* **["pages"]** See the [["pages"]](#pages) section
+* **["general"]** See the [["general"]](#["general"]) section
+* **["pages"]** See the [["pages"]](#["pages"]) section
+
+e.g.
+
+    {
+        "program": "cvgen",
+        "css_files": ["sample.css", ...],
+        "general": {
+            "header": "header.html",
+            "footer": "footer.html",
+            "paper_size": { ... },
+            ...
+        },
+        "pages": { ... },
+        ...
+    }
 
 ### ["general"]
 * **["general"]["header"]** Defines the template to be used for the page header
 * **["general"]["footer"]** Defines the template to be used for the page footer
-* **["general"]["css_files"]** Defines (in list form) the css files that should be rendered into the cv.
 * **["general"]["paper_size"]** See the [["general"]["paper_size"]](#["general"]["paper_size"]) section
+* **["general"]["style"]** Defines the template set to be used (directly matches to immediate contents of the `layout/` directory.
+
+e.g.
+
+    {
+        "general": {
+            "header": "header.html",
+            "footer": "footer.html",
+            "paper_size": { ... },
+            "style": "default"
+            ...
+        },
+        ...
+    }
 
 #### ["general"]["paper_size"]
 * **["general"]["paper_size"]["unit"]** Defines the units to be used in the css file
@@ -36,117 +64,78 @@ as dictated by the the general[title] section of the json file.
 * **["general"]["paper_size"]["margin_right"]** Defines the right page margin
 * **["general"]["paper_size"]["margin_top"]** Defines the top margin
 
-### ["pages"]
-* **["pages"]["a page name"]** See the [["pages"]["page_name"]](#
+e.g.
 
-{
-    "program":"cvgen",
-    "version":"0.01",
-    "general": {
-        "name":"John Doe",
-        "address":["01 Example Lane", "City", "Country"],
-        "phoneNumber": "+123 (0)45 678 9012",
-        "email": "example@email.com",
-        "website": "google.com",
-        "paper_size": {
-            "width": 210,
-            "height": 297,
-            "unit": "mm",
-            "margin_left": 45,
-            "margin_right": 45,
-            "margin_top": 30,
-            "margin_bottom": 30
-         },
-        "style": "default",
-        "title": "John Doe Curriculum Vitae",
-        "header": "header.html",
-        "footer": "footer.html"
-    },
-    "css_files": [ "css/cv.css" ],
-    "pages": {
-        "1": {
-            "blocks": {
-                "Contact": {
-                    "type": "list",
-                    "data": {
-                        "name": false,
-                        "items": "{{[general][address]}}"
-                    }
-                },
-                "About": {
-                    "type": "text",
-                    "data": {
-                        "name": false,
-                        "content": "About me; i am good at the stuff that i do including making cvs."
-                    }
-                },
-                "Education": {
-                    "type": "education",
-                    "data": {
-                        "degrees": [
-                            { "award": "1.1", "level": "BA", "course": "CV Automation", "school": "Python School" },
-                            { "award": "II.2", "level": "MA", "course": "CV Design", "school": "Design School" }
-                        ]
-                    }
-                },
-
-                "Technical Skills": {
-                    "type": "named_item_list",
-                    "data": {
-                        "items": [
-                            ["Languages","C, V, Python, CSS, HTML5, Jinja2"],
-                            ["Aaahhh","BBB, CCC"],
-                            ["Example","This is an example by the way"]
-                        ]
-                    }
-                },
-
-                "Strengths": {
-                    "type":"list",
-                    "data": {
-                        "items": [
-                            "Communicates to your employer",
-                            "What you are strong at",
-                            "In a flexible manner"
-                        ]
-                    }
-                },
-                "Hobbies": {
-                    "type":"list",
-                    "data": {
-                        "items": [
-                            "Writing code to generate CVs",
-                            "Staying DRY"
-                        ]
-                    }
-                }
-            }
+    {
+        "general": {
+            ...
+            "paper_size": {
+                "width": 210,
+                "height": 297,
+                "unit": "mm",
+                "margin_left": 45,
+                "margin_right": 45,
+                "margin_top": 30,
+                "margin_bottom": 30
+             },
+             ...
         },
-        "2": {
-            "blocks": {
-                "Work History": {
-                    "type":"work_history",
-                    "data": {
-                        "jobs": [
-                            {
-                                "title":"Associate Curriculum Vitae",
-                                "company": "CV Ltd.",
-                                "duration": "Then - Now",
-                                "description":"That's it."
-                            } 
-                        ]
-                    }
-                },
-                "References": {
-                    "type":"text",
-                    "data": {
-                        "content": "Available upon request"
-                    }
-                }
-            }
+        ...
+    }
+
+
+### ["pages"]
+* **["pages"][PAGE_NAME]** See the [["PAGES"][PAGE_NAME]](#["pages"][PAGE_NAME]) section. `PAGE_NAME` can be defined by the user.
+
+e.g.
+
+    {
+        ...
+        "pages": {
+            "page one": { ... },
+            ...
         }
     }
-}
-    
+  
 
+#### ["pages"][PAGE_NAME]
+* **["pages"][PAGE_NAME]["blocks"]** A dictionary of Blocks, where the key is used for the title (See the [Blocks]](#Blocks) section)
 
+e.g.
+
+    {
+        ...
+        "pages": {
+            "page one": { 
+                "blocks": { ... }
+            },
+            ...
+        }
+    }
+
+### Blocks
+A block is a section of a CV, which is rendered using json data and a template.
+A typical block has the following form:
+
+    {
+        ...
+        "pages": {
+            "1": {
+                "blocks": {
+                    "BLOCK_TITLE": {
+                        "name": true,
+                        "type": "BLOCK_TYPE",
+                        "data": { ... },
+                    }, 
+                    ...
+                }
+            },
+            ...
+        },
+        ...
+    }
+
+* `BLOCK_TITLE` is the title of the block, and a CSS class name for that block.
+* `name` defines whether the heading containing `BLOCK_TITLE` is shown or not.
+* `type` is a pointer to the template to be used (e.g. "list" -> "templates/list.html")
+* `data` are the variables passed to the template when being rendererd. These are dependant on the block being used.

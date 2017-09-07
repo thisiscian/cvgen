@@ -109,7 +109,7 @@ def render():
     
     output_html = BeautifulSoup(output_html, 'html.parser').prettify()
 
-    os.mkdir('output')
+    if not os.path.isdir('output'): os.mkdir('output')
     with open('output/{}.html'.format(config['general']['title']), 'w') as fh:
        fh.write(output_html) 
 

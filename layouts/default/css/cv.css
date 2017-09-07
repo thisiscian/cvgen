@@ -83,4 +83,9 @@ html { font-size: 10pt; font-family: 'Source Code Pro', monospace; }
     font-size:0.9em;
 }
 
-.work_history .content { margin-top:1ex; }
+.work_history .content { margin-top:1ex; margin-bottom:2ex;}
+
+a {
+    color:black;
+    text-decoration:None; 
+}

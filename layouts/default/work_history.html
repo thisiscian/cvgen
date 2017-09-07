@@ -1,0 +1,7 @@
+<div class="{{block_name}} block work_history">
+    {% if name is not defined or name %}<div class="title">{{block_name}}</div>{% endif %}
+    {% for job in jobs %}
+        <div class="subtitle"><div class="jobtitle">{{job['title']}}</div><div class="location">{{job['company']}}, {{job['duration']}}</div></div>  
+        <div class="content">{{job['description']}}</div>
+    {% endfor %}
+</div> 

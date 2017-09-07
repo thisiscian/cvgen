@@ -1,0 +1,8 @@
+<div class="{{block_name}} block education">
+    {% if name is not defined or name %}<div class="title">{{block_name}}</div>{% endif %}
+    <ul>
+    {%for degree in degrees %}
+        <li>{{degree['level']}} {{degree['course']}}<div class="school">{{degree['school']}}</div></li>    
+    {%endfor%}
+    <ul>
+</div>

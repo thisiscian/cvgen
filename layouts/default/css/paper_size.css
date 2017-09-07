@@ -1,0 +1,21 @@
+@media print {
+    html {
+        width: {{width}}{{unit}};
+        height: {{height}}{{unit}};
+    }
+}
+
+
+@page {
+    size: {{width}}{{unit}} 297{{unit}};
+    margin: {{margin_top}}{{unit}} {{margin_right}}{{unit}} {{margin_bottom}}{{unit}} {{margin_bottom}}{{unit}};
+}
+
+div.page {
+    {% for key in ["width","max-width","min-width"] %}{{key}}: {{width - margin_left - margin_right}}{{unit}};
+    {% endfor %}
+    {% for key in ["height","max-height","min-height"] %}{{key}}: {{height - margin_top - margin_bottom}}{{unit}};
+    {% endfor %}
+    overflow:hidden;
+    padding: {{margin_top}}{{unit}} {{margin_right}}{{unit}} {{margin_bottom}}{{unit}} {{margin_left}}{{unit}};
+}

@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+	<meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+	<meta content='utf-8' http-equiv='encoding'>
+	<head>
+        {% if css_renders %}
+        <style>
+            {% for css in css_renders %}
+                {{css|safe}}
+            {% endfor %}
+        </style>
+        {% endif %}
+        <title>{{general['title']}}</title>
+	</head>
+	<body>
+        {% for page in page_renders %}
+        <div class="page">
+            {% if header %}{{header|safe}}{% endif %}
+            {% for block in page %}
+                {{block|safe}}
+            {% endfor %}
+            {% if footer %}{{footer|safe}}{% endif %}
+        </div>
+        {% endfor %}
+	</body>
+</html>
+

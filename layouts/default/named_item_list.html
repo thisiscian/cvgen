@@ -1,0 +1,8 @@
+<div class="{{block_name}} block named_item_list">
+    {% if name is not defined or name %}<div class="title">{{block_name}}</div>{% endif %}
+    <ul>
+    {%for name,item in items %}
+        <li><div class="section">{{name}} </div>{{item}}</li>    
+    {%endfor%}
+    <ul>
+</div>
